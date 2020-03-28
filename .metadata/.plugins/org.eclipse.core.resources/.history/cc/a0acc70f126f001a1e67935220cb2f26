@@ -1,0 +1,11 @@
+package com.institution.service;
+
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public void createUser() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.institution.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.institution.model.Institution;
+import com.institution.repository.InstitutionRepository;
+import com.institution.service.SequenceGeneratorService;
+
+public class InstitutionSerivceImpl implements InstitutionService {
+	
+	@Autowired
+	InstitutionRepository repo;
+	
+	@Autowired
+	SequenceGeneratorService sequenceGenerator;
+
+	@Override
+	public Optional<Institution> createInstitution(Institution institution) {
+		institution.setId(sequenceGenerator.generateSequence(Institution.SEQUENCE_NAME));
+		repo.save(institution);
+		return institution;
+	}
+
+}

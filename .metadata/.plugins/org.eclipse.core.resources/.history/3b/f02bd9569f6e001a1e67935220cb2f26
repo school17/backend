@@ -1,0 +1,22 @@
+package com.institution.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.institution.model.Institution;
+import com.institution.repository.InstitutionRepository;
+import com.institution.service.SequenceGeneratorService;
+
+@RestController
+public class InstitutionController {
+	
+	
+	@PostMapping("/create_institution")
+	public Institution createInstitution(@RequestBody Institution institution) {
+		return new Institution();
+	}
+
+}

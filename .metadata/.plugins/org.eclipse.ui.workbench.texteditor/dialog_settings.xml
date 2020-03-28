@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="attemptAuthentication"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="attemptAuthentication"/>
+			<item value="userDetailsService"/>
+			<item value="JWTAuthorizationFilter"/>
+			<item value="User"/>
+			<item value="authenticationManager"/>
+			<item value="auth"/>
+			<item value="GETTING USER DETAILS"/>
+			<item value="JWT"/>
+			<item value="WebSecurity"/>
+			<item value="CustomAuthenticationEntryPoint"/>
+			<item value="generateSequence"/>
+			<item value="counter"/>
+			<item value="mode"/>
+			<item value="start-class"/>
+			<item value="spring.jpa.hibernate.ddl-auto=none"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="942"/>
+		<item key="DIALOG_Y_ORIGIN" value="101"/>
+		<item key="DIALOG_WIDTH" value="290"/>
+		<item key="DIALOG_HEIGHT" value="409"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

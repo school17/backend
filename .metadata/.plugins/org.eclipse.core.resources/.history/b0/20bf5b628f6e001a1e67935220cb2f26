@@ -1,0 +1,9 @@
+package com.institution.events;
+
+import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
+
+import com.institution.model.Institution;
+
+public class InstitutionModelListener  AbstractMongoEventListener<Institution> {
+
+}

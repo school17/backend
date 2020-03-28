@@ -1,0 +1,37 @@
+version: '3'
+services:
+  school-nginx:
+   container_name: school-nginx
+   image: nginx:1.13
+   restart: always
+   ports:
+   - 80:80
+   - 443:443
+   volumes:
+   - ./nginx/conf.d:/etc/nginx/conf.d
+   depends_on:
+   - syllabus
+ 
+  school-mysql:
+   container_name: school-mysql
+   image: mysql/mysql-server:5.5
+   environment:
+    MYSQL_DATABASE: syllabus
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_ROOT_HOST: ''
+   ports:
+   - "3307:3307"
+   restart: always
+  
+  syllabus:
+    restart: always
+    build: ./syllabus
+    working_dir: /syllabus
+    volumes:
+      - ./syllabus:/syllabus
+      - ~/.m2:/root/.m2
+    expose:
+      - "8080"
+    command: mvn clean spring-boot:run
+    depends_on:
+      - school-mysql

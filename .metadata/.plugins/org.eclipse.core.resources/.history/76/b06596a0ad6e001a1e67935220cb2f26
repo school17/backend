@@ -1,0 +1,13 @@
+package com.institution.service;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.institution.model.Institution;
+
+@Service
+public interface InstitutionService {
+	
+	public void createInstitution(Institution institution);
+}

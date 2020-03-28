@@ -1,0 +1,5 @@
+package com.institution.service;
+
+public interface InstitutionService {
+
+}

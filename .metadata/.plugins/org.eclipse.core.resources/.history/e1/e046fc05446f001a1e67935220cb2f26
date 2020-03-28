@@ -1,0 +1,42 @@
+package com.institution.security;
+
+import java.util.Arrays;
+import java.util.Optional;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.institution.model.ApplicationUser;
+import com.institution.repository.UserRepository;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+	
+	private UserRepository repo;
+	
+	public UserDetailsServiceImpl(UserRepository repo) {
+		this.repo = repo;
+	}
+    
+    public UserDetailsServiceImpl() {}
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    	System.out.println("GETTING USER DETAILS "+userName);
+    	System.out.println("GETTING COUNT "+repo.count());
+        Optional<ApplicationUser> applicationUser = repo.findByUsername("goutham");
+        if (applicationUser.isEmpty()) {
+        	System.out.println("INSIDE NOT FOUND");
+            throw new UsernameNotFoundException(userName);
+        }
+        ApplicationUser us = applicationUser.get();
+        System.out.println("GETTING USER DETAILS "+us.toString());
+        GrantedAuthority authority = new SimpleGrantedAuthority(us.getRole());
+        return new org.springframework.security.core.userdetails.User(us.getUsername(), us.getPassword(), Arrays.asList(authority));
+    }
+
+}

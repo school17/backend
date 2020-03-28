@@ -1,0 +1,33 @@
+package com.institution.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.institution.model.Institution;
+import com.institution.repository.InstitutionRepository;
+import com.institution.service.InstitutionService;
+
+@RestController
+public class InstitutionController {
+	
+	@Autowired
+	InstitutionService institutionSerivce;
+	
+	@PostMapping("institution/create_institution")
+	public Institution createInstitution(@RequestBody Institution institution) {
+		return institutionSerivce.createInstitution(institution);
+	}
+	
+	@PutMapping("institution/{id}/update_institution")
+	public Optional<Institution> updateInstitutionDetails(@RequestBody Institution institution, @PathVariable Long institutionId){
+		return institutionSerivce.updateInstitutionDetails(institution, institutionId);
+	}
+
+}

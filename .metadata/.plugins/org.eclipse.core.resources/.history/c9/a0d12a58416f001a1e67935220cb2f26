@@ -1,0 +1,12 @@
+package com.institution.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.institution.model.ApplicationUser;
+
+public interface UserRepository extends MongoRepository<ApplicationUser, String> {
+	Optional<ApplicationUser> findByUserName(String userName);
+
+}

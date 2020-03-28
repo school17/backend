@@ -1,0 +1,13 @@
+package com.institution.service;
+
+import com.institution.model.User;
+
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public void createUser(User user) {
+		
+
+	}
+
+}
