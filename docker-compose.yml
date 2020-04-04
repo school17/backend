@@ -1,6 +1,6 @@
 version: '3'
 services:
-  school-nginx:
+  nginx:
    container_name: school-nginx
    image: nginx:1.13
    restart: always
@@ -10,28 +10,27 @@ services:
    volumes:
    - ./nginx/conf.d:/etc/nginx/conf.d
    depends_on:
-   - syllabus
- 
-  school-mysql:
-   container_name: school-mysql
-   image: mysql/mysql-server:5.5
-   environment:
-    MYSQL_DATABASE: syllabus
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_ROOT_HOST: ''
-   ports:
-   - "3307:3307"
-   restart: always
+   - institution
   
-  syllabus:
+  school-mongo:
+    container_name: "school-mongo"
+    image: mongo:3.6
     restart: always
-    build: ./syllabus
-    working_dir: /syllabus
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null
+  
+  institution:
+    restart: always
+    build: ./institution
+    working_dir: /institution
     volumes:
-      - ./syllabus:/syllabus
-      - ~/.m2:/root/.m2
+      - ./institution:/institution
     expose:
-      - "8080"
+      - "8081"
     command: mvn clean spring-boot:run
-    depends_on:
-      - school-mysql
+    links:
+      - school-mongo

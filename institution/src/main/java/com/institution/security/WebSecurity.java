@@ -19,6 +19,8 @@ import com.institution.service.UserDetailsServiceImpl;
 
 import static com.institution.security.SecurityConstants.*;
 
+import java.util.Arrays;
+
 
 
 //public class WebSecurity{}
@@ -56,11 +58,21 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
-  /*@Bean
+  @Bean
     CorsConfigurationSource corsConfigurationSource() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    /*final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-    return source;
-  }*/
+    return source;*/
+      final CorsConfiguration configuration = new CorsConfiguration();
+      configuration.setAllowedOrigins(Arrays.asList("*"));
+      configuration.setAllowedMethods(Arrays.asList("HEAD",
+              "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+      configuration.setAllowCredentials(true);
+      configuration.setAllowedHeaders(Arrays.asList("*"));
+      configuration.setExposedHeaders(Arrays.asList("X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+      source.registerCorsConfiguration("/**", configuration);
+      return source;
+  }
 
 }

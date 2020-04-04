@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-    <typeInfo handle="=institution/src\/main\/java&lt;com.institution.repository{InstitutionRepository.java[InstitutionRepository" modifiers="513" timestamp="1585137178000"/>
-    <typeInfo handle="=institution/src\/main\/java&lt;com.institution.service{InstitutionService.java[InstitutionService" modifiers="513" timestamp="1585221671000"/>
-    <typeInfo handle="=institution/\/Users\/gouthamp\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.data\/spring-data-mongodb\/2.2.5.RELEASE\/114a11b021af151f61bad26753f089320ca1875d\/spring-data-mongodb-2.2.5.RELEASE.jar&lt;org.springframework.data.mongodb.repository(MongoRepository.class[MongoRepository" modifiers="1537" timestamp="1585124150000"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

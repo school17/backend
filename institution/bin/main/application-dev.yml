@@ -1,5 +1,0 @@
-jwt:
-  clientId: school
-  client-secret: secret
-  accessTokenValidititySeconds: 120
-  refreshTokenValiditySeconds: 1000

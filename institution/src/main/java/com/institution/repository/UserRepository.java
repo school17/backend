@@ -11,4 +11,7 @@ import com.institution.model.ApplicationUser;
 public interface UserRepository extends MongoRepository<ApplicationUser, String> {
 	ApplicationUser findByUsername(String username);
 	ApplicationUser findByEmail(String email);
+	ApplicationUser findApplicationUserByEmailAndInstitution(String email, String Institution);
+	//ApplicationUser findApplicationUserByEmail(String email);
+	//ApplicationUser findByEmailAndInstitution(String email, String institution);
 }

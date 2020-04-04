@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-//public class CorsConfig {}
-@Configuration
+public class CorsConfig {}
+/*@Configuration
 @EnableWebSecurity
 public class CorsConfig implements Filter {
 
@@ -38,4 +38,4 @@ public class CorsConfig implements Filter {
     public void destroy() {
 
     }
-}
+}*/

@@ -1,6 +1,8 @@
 package com.institution.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -13,6 +15,7 @@ import lombok.ToString;
 public class ApplicationUser { 
 	@Id
 	private String id;
+	//@Indexed(name = "email_index", direction = IndexDirection.DESCENDING)
 	private String email;
 	private String password;
 	private String username;
