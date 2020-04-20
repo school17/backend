@@ -21,6 +21,7 @@ spring:
       protocol: smtp
       test-connection: false
 
+
 jwt:
   clientId: school
   client-secret: secret
@@ -29,6 +30,7 @@ jwt:
 
 server:
   port : 8081
+
 
 logging:
   level:

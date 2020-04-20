@@ -16,6 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.institution.service.UserDetailsServiceImpl;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import static com.institution.security.SecurityConstants.*;
 
@@ -28,6 +29,14 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) 
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+    private static final String[] AUTH_WHITELIST = {
+
+            // -- swagger ui
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };
 	
 	private UserDetailsServiceImpl userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -36,7 +45,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-    
+
+   /* public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/swagger-ui.html**")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }*/
    
     
     protected void configure(HttpSecurity http) throws Exception{
@@ -44,6 +60,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     	.antMatcher("/**")
     	.authorizeRequests()
     	.antMatchers(SIGN_UP_URL).permitAll()
+        .antMatchers(AUTH_WHITELIST).permitAll()
     		.antMatchers("/api/**").authenticated()
     		.and()
     	.addFilter(new JWTAuthenticationFilter(authenticationManager()))

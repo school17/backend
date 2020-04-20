@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Document(collection = "institutions")
 @Getter @Setter @NoArgsConstructor
-public class Institution {
+public class Institution extends CustomAuditing {
 
 	@Transient
     public static final String SEQUENCE_NAME = "institutions_sequence";

@@ -2,6 +2,7 @@ package com.institution.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +28,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 	public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
-	
+
 	 @Override
 	    protected void doFilterInternal(HttpServletRequest req,
 	                                    HttpServletResponse res,
@@ -47,8 +48,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 	        chain.doFilter(req, res);
 	    }
 
-	    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+	    public UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
 	        String token = request.getHeader(HEADER_STRING);
+
 	        if (token != null) {
 	            String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
 	                    .build()

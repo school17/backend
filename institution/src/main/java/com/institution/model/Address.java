@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class Address {
+public class Address extends CustomAuditing {
 	
 	private String address1;
 	private String address2;

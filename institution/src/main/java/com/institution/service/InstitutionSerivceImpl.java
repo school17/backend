@@ -36,6 +36,7 @@ public class InstitutionSerivceImpl implements InstitutionService {
 		institution.setId(sequenceGenerator.generateSequence(Institution.SEQUENCE_NAME));
 		logger.info("creating a user " + generatePassword());
 		ApplicationUser user = new ApplicationUser();
+		user.setId(sequenceGenerator.generateSequence(ApplicationUser.SEQUENCE_NAME));
 		user.setRole("ADMIN");
 		logger.info("password generation " + generatePassword());
 		user.setPassword(generatePassword());

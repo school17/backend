@@ -19,6 +19,9 @@ public class UserServiceImpl implements UserServiceDao {
 
 	@Autowired
 	MailService emailService;
+
+	@Autowired
+	SequenceGeneratorService sequenceGenerator;
 	@Override
 	public void createUser(ApplicationUser applicationUser, String institutionId) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -27,6 +30,7 @@ public class UserServiceImpl implements UserServiceDao {
 		applicationUser.setRole(applicationUser.getRole());
 		applicationUser.setTemporaryPassword(true);
 		applicationUser.setInstitution(institutionId);
+		applicationUser.setId(sequenceGenerator.generateSequence(ApplicationUser.SEQUENCE_NAME));
 		userRepo.save(applicationUser);
 		emailService.sendMail(applicationUser.getEmail(), "New User Creation", "Welcome you user name is " +
 				applicationUser.getEmail() + " and temporary password is "+tempPassword);
