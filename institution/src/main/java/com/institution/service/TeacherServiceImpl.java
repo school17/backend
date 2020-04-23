@@ -45,6 +45,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher updateTeacher(Teacher teacher) {
+        System.out.println("ID" + teacher.getId());
         Optional<Teacher>  teacher1 = teacherRepository.findById(teacher.getId());
         if(teacher1 == null) {
             throw new EntityNotFoundException(Teacher.class, "id", Long.toString(teacher.getId()));
@@ -56,6 +57,8 @@ public class TeacherServiceImpl implements TeacherService {
             updateTeacher.setEmail(teacher.getEmail());
             updateTeacher.setGrades(teacher.getGrades());
             updateTeacher.setSubjects(teacher.getSubjects());
+            updateTeacher.setGrade(teacher.getGrade());
+            updateTeacher.setPicture(teacher.getPicture());
             return teacherRepository.save(updateTeacher);
 
         }

@@ -11,7 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Setter
 @NoArgsConstructor
 @ToString
-public class CustomAuditing {
+public class CustomAuditing  {
 
     @CreatedDate
     private String createdAt;

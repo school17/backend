@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/teachers")
+@RequestMapping("/api/institution")
 public class TeacherController {
 
     @Autowired
@@ -40,6 +40,13 @@ public class TeacherController {
             throws EntityNotFoundException
     {
         return  teacherService.updateTeacher(teacher);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/{institutionId}/teachers/search")
+    public List<Teacher> findTeachers(@RequestBody Teacher teacher, @PathVariable(value = "institutionId") Long institutionId) {
+
+        return null;
     }
 
 
