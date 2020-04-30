@@ -5,15 +5,28 @@ import com.institution.model.ApplicationUser;
 import com.institution.model.Institution;
 import com.institution.model.Teacher;
 import com.institution.repository.TeacherRepository;
+import com.mongodb.BasicDBObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.sql.Date;
+import java.util.*;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
+    private final MongoTemplate mongoTemplate;
 
+    @Autowired
+    public TeacherServiceImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
     @Autowired
     TeacherRepository teacherRepository;
 
@@ -22,6 +35,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     UserServiceDao userService;
+
     @Override
     public Teacher createTeacher(Teacher teacher) {
         InstitutionSerivceImpl institutionSerivce = new InstitutionSerivceImpl();
@@ -59,9 +73,54 @@ public class TeacherServiceImpl implements TeacherService {
             updateTeacher.setSubjects(teacher.getSubjects());
             updateTeacher.setGrade(teacher.getGrade());
             updateTeacher.setPicture(teacher.getPicture());
+            updateTeacher.setName(teacher.getName());
             return teacherRepository.save(updateTeacher);
 
         }
 
+    }
+
+
+    @Override
+    public Page<Teacher> searchTeachers(Teacher teacher, long institutionId, Map<String,String> searchParam) {
+        int pageNumber = Integer.parseInt(Optional.ofNullable(searchParam.get("pageNumber")).orElse("0"));
+        int pageSize = Integer.parseInt(Optional.ofNullable(searchParam.get("?pageSize")).orElse("10"));
+        Pageable page  =  PageRequest.of(pageNumber,pageSize);
+        Set<String> subjects = new TreeSet<String>();
+        Set<String> grades = new TreeSet<String>();
+        if(!(teacher.getSubjects() == null) && !(teacher.getGrades() == null))
+        {
+            subjects.addAll(teacher.getSubjects());
+            grades.addAll(teacher.getGrades());
+
+            return teacherRepository.searchTeacherWithGradesAndGrades(Optional.ofNullable(teacher.getName()).orElse(""),
+                    Optional.ofNullable(teacher.getEmail()).orElse("") ,
+                    grades,
+                    subjects,
+                    institutionId, page);
+        }
+
+        if(!(teacher.getSubjects() == null)){
+            subjects.addAll(teacher.getSubjects());
+
+            return teacherRepository.searchTeacherWithSubjects(Optional.ofNullable(teacher.getName()).orElse(""),
+                    Optional.ofNullable(teacher.getEmail()).orElse("") ,
+                    subjects,
+                    institutionId, page);
+        }
+
+        if(!(teacher.getGrades() == null)) {
+            grades.addAll(teacher.getGrades());
+            return teacherRepository.searchTeacherWithGrades(Optional.ofNullable(teacher.getName()).orElse(""),
+                    Optional.ofNullable(teacher.getEmail()).orElse("") ,
+                    grades,
+                    institutionId, page);
+        }
+
+        else {
+            return teacherRepository.searchTeacher(Optional.ofNullable(teacher.getName()).orElse(""),
+                    Optional.ofNullable(teacher.getEmail()).orElse("") ,
+                    institutionId, page);
+        }
     }
 }

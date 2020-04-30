@@ -7,10 +7,12 @@ import com.institution.service.TeacherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/institution")
@@ -22,7 +24,7 @@ public class TeacherController {
     Logger logger = LoggerFactory.getLogger(Teacher.class);
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/create_teacher")
+    @PostMapping("/{institutionId}/create_teacher")
     public Teacher createTeacher(@RequestBody Teacher teacher) {
         return teacherService.createTeacher(teacher);
     }
@@ -44,9 +46,9 @@ public class TeacherController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/{institutionId}/teachers/search")
-    public List<Teacher> findTeachers(@RequestBody Teacher teacher, @PathVariable(value = "institutionId") Long institutionId) {
+    public Page<Teacher> findTeachers(@RequestBody Teacher teacher, @PathVariable(value = "institutionId") Long institutionId, @RequestParam Map<String,String> searchParam) {
 
-        return null;
+        return teacherService.searchTeachers(teacher, institutionId, searchParam);
     }
 
 
