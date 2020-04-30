@@ -1,8 +1,8 @@
 spring:
-    data.mongodb.database: school-db
-    data.mongodb.port: 27017
-    spring.data.mongodb.host: localhost
-    #data.mongodb.host: school-mongo
+    #data.mongodb.database: school-db
+    #data.mongodb.port: 27017
+    #spring.data.mongodb.host: localhost
+    data.mongodb.host: school-mongo
     mail:
       host: smtp.gmail.com
       username: gomadsolutions@gmail.com
