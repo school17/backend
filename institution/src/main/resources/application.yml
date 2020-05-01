@@ -19,7 +19,7 @@ spring:
               enable: true
               required: true
       protocol: smtp
-      test-connection: false
+      test-connection: true
 
 
 jwt:
