@@ -22,4 +22,3 @@ public class Address extends CustomAuditing {
 	
 
 }
-
