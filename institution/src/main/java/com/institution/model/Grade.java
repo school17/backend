@@ -30,7 +30,15 @@ public class Grade extends CustomAuditing {
 
     private String division;
 
-    private String institutionId;
+    private long institutionId;
+
+    private long teacherId;
+
+    @Transient
+    public boolean updateTeacher;
+
+    @Transient
+    private  long previousTeacherId;
 
 
 }

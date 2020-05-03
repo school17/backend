@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/institution")
@@ -46,9 +47,27 @@ public class TeacherController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/{institutionId}/teachers/search")
-    public Page<Teacher> findTeachers(@RequestBody Teacher teacher, @PathVariable(value = "institutionId") Long institutionId, @RequestParam Map<String,String> searchParam) {
+    public Page<Teacher> findTeachers(@RequestBody Teacher teacher,
+                                      @PathVariable(value = "institutionId") Long institutionId,
+                                      @RequestParam Map<String,String> searchParam) {
 
         return teacherService.searchTeachers(teacher, institutionId, searchParam);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/{institutionId}/teachers/available_teachers")
+    public List<Teacher> availableTeacher(@PathVariable(value = "institutionId") Long institutionId) {
+        return teacherService.findNonClassTeachers(institutionId);
+    }
+
+    @GetMapping("/{institutionId}/teachers/{name}/{grade}/grades_teacher")
+
+    public Optional<Teacher> getTeacherByNameAndGrade(@PathVariable(value = "institutionId") Long institutionId,
+                                                      @PathVariable(value = "name") String name,
+                                                      @PathVariable(value = "grade") String grade){
+
+        return teacherService.findTeacherByGrade(institutionId, grade, name);
+
     }
 
 
