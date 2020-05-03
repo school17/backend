@@ -48,7 +48,10 @@ public class TeacherServiceImpl implements TeacherService {
 
         teacher.setId(sequenceGenerator.generateSequence(Teacher.SEQUENCE_NAME));
         teacher.setApplicationUserId(user.getId());
-        teacher.setClassTeacher(teacher.getClassTeacher());
+        System.out.println("CLASS TEACHER " + teacher.getClassTeacher());
+        String isClassTeacher = teacher.getClassTeacher() == null ? "false" : "true";
+        teacher.setClassTeacher(Optional.ofNullable(teacher.getClassTeacher()).orElse("NOT ASSIGNED"));
+        teacher.setClassTeacher(isClassTeacher);
         return teacherRepository.save(teacher);
     }
 
@@ -122,5 +125,15 @@ public class TeacherServiceImpl implements TeacherService {
                     Optional.ofNullable(teacher.getEmail()).orElse("") ,
                     institutionId, page);
         }
+    }
+
+    @Override
+    public List<Teacher> findNonClassTeachers(long institutionId) {
+        return teacherRepository.findAvailableTeachers(institutionId);
+    }
+
+    @Override
+    public Optional<Teacher> findTeacherByGrade(Long institutionId, String grade, String name) {
+       return  teacherRepository.findTeacherByInstitutionIdAndGradeAndName(institutionId, grade, name);
     }
 }
