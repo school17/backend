@@ -5,6 +5,8 @@ import com.institution.model.Grade;
 import com.institution.model.Teacher;
 import com.institution.repository.GradeRepository;
 import com.institution.repository.TeacherRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,8 @@ public class GradeServiceImpl implements GradeService {
 
     @Autowired
     SequenceGeneratorService sequenceGenerator;
+
+    Logger logger = LoggerFactory.getLogger(GradeServiceImpl.class);
 
     @Override
     public Grade createGrade(Grade grade) {
@@ -62,30 +66,33 @@ public class GradeServiceImpl implements GradeService {
                     throw new EntityNotFoundException(Teacher.class, "id", Long.toString(grade.getTeacherId()));
                 }else {
                     Teacher teach = teacher.get();
-                    teach.setGrade(grade.getGrade());
+                    teach.setGrade("");
                     teach.setClassTeacher("false");
                     teacherRepository.save(teach);
 
                 }
-
-                getGrade.setDivision(grade.getDivision());
-                getGrade.setSection(grade.getSection());
-                getGrade.setTeacher(grade.getTeacher());
-                updateTeacher(grade);
-                getGrade.setGrade(grade.getGrade());
             }
+
+            logger.info("UPDATING GRADE MODEL");
+            getGrade.setDivision(grade.getDivision());
+            getGrade.setSection(grade.getSection());
+            getGrade.setTeacher(grade.getTeacher());
+            updateTeacher(grade);
+            getGrade.setGrade(grade.getGrade());
+            getGrade.setTeacherId(grade.getTeacherId());
         }
         return repo.save(getGrade);
     }
 
     public void updateTeacher(Grade grade) {
+        logger.info("UPDATING TEACHER WHILE GRADE OPERATION");
         Optional<Teacher> teacher = teacherRepository.findTeacherByInstitutionIdAndId(grade.getInstitutionId()
                 , grade.getTeacherId());
         if(teacher == null) {
             throw new EntityNotFoundException(Teacher.class, "id", Long.toString(grade.getTeacherId()));
         }else {
             Teacher teach = teacher.get();
-            teach.setGrade(grade.getGrade());
+            teach.setGrade(grade.getGrade() + " " + grade.getSection());
             teach.setClassTeacher("true");
             teacherRepository.save(teach);
 

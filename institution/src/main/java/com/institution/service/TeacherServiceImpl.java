@@ -1,11 +1,16 @@
 package com.institution.service;
 
+import com.institution.controller.InstitutionController;
 import com.institution.errorHandling.EntityNotFoundException;
 import com.institution.model.ApplicationUser;
+import com.institution.model.Grade;
 import com.institution.model.Institution;
 import com.institution.model.Teacher;
+import com.institution.repository.GradeRepository;
 import com.institution.repository.TeacherRepository;
 import com.mongodb.BasicDBObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.domain.Page;
@@ -23,6 +28,8 @@ import java.util.*;
 public class TeacherServiceImpl implements TeacherService {
     private final MongoTemplate mongoTemplate;
 
+    Logger logger = LoggerFactory.getLogger(TeacherServiceImpl.class);
+
     @Autowired
     public TeacherServiceImpl(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
@@ -35,6 +42,9 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     UserServiceDao userService;
+
+    @Autowired
+    GradeRepository gradeRepository;
 
     @Override
     public Teacher createTeacher(Teacher teacher) {
@@ -67,8 +77,7 @@ public class TeacherServiceImpl implements TeacherService {
         if(teacher1 == null) {
             throw new EntityNotFoundException(Teacher.class, "id", Long.toString(teacher.getId()));
         }else {
-            Teacher updateTeacher = teacher1.get();
-            updateTeacher.setClassTeacher(teacher.getClassTeacher());
+           /*Teacher updateTeacher = teacher1.get();
             updateTeacher.setAddress(teacher.getAddress());
             updateTeacher.setDivision(teacher.getDivision());
             updateTeacher.setEmail(teacher.getEmail());
@@ -77,7 +86,10 @@ public class TeacherServiceImpl implements TeacherService {
             updateTeacher.setGrade(teacher.getGrade());
             updateTeacher.setPicture(teacher.getPicture());
             updateTeacher.setName(teacher.getName());
-            return teacherRepository.save(updateTeacher);
+            updateTeacher.setClassTeacher(updateTeacher.getClassTeacher());*/
+            teacher.setClassTeacher(teacher1.get().getClassTeacher());
+            return teacherRepository.save(teacher);
+            //return teacherRepository.save(updateTeacher);
 
         }
 
@@ -135,5 +147,22 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Optional<Teacher> findTeacherByGrade(Long institutionId, String grade, String name) {
        return  teacherRepository.findTeacherByInstitutionIdAndGradeAndName(institutionId, grade, name);
+    }
+
+    @Override
+    public void deleteTeacher(long institutionId, long id) {
+        Optional<Teacher> teacher = teacherRepository.findTeacherByInstitutionIdAndId(institutionId,id);
+        if(teacher == null) {
+            throw new EntityNotFoundException(Teacher.class, "id", Long.toString(id));
+        }else {
+            logger.info("Checking the teacher is a class teacher " + teacher.get().getClassTeacher());
+            if(Boolean.parseBoolean(teacher.get().getClassTeacher())== true) {
+                logger.info("Finding the class of the class teacher");
+                Grade grade = gradeRepository.findGradeByInstitutionIdAndTeacherId(institutionId, id);
+                grade.setTeacher("");
+                gradeRepository.save(grade);
+            }
+            teacherRepository.deleteByInstitutionIdAndId(institutionId, id);
+        }
     }
 }

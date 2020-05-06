@@ -70,5 +70,14 @@ public class TeacherController {
 
     }
 
+    @DeleteMapping("/{institutionId}/teachers/{teacherId}")
+
+    public void deleteTeacher(@PathVariable(value = "institutionId") Long institutionId,
+                              @PathVariable(value = "teacherId") Long id){
+
+        teacherService.deleteTeacher(institutionId, id);
+
+    }
+
 
 }
