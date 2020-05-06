@@ -1,12 +1,10 @@
 package com.institution.service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.institution.controller.InstitutionController;
-import com.institution.model.ApplicationUser;
+import com.institution.model.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.institution.errorHandling.EntityNotFoundException;
-import com.institution.model.Address;
-import com.institution.model.Institution;
 import com.institution.repository.InstitutionRepository;
 import com.institution.service.SequenceGeneratorService;
 
@@ -30,6 +26,7 @@ public class InstitutionSerivceImpl implements InstitutionService {
 
 	@Autowired
 	UserServiceDao userService;
+
 
 	@Override
 	public Institution createInstitution(Institution institution) {
@@ -46,13 +43,15 @@ public class InstitutionSerivceImpl implements InstitutionService {
 	}
 
 	public Institution updateInstitutionDetails(Institution institution, long institutionId) {
+		String sectionArray[] = {"A", "B","C","D","E","F","G","H","I","J"};
 		Optional<Institution> getInstitution = repo.findById(institutionId);
 		if(getInstitution == null) {
 			throw new EntityNotFoundException(Institution.class, "id", Long.toString(institutionId));
 			
 		}else {
 			Institution updateInstitution = getInstitution.get();
-			updateInstitution.setBranch(institution.getBranch());
+			institution.setId(institutionId);
+			/*updateInstitution.setBranch(institution.getBranch());
 			updateInstitution.setEmail(institution.getEmail());
 			updateInstitution.setGrades(institution.getGrades());
 			updateInstitution.setMode(institution.getMode());
@@ -60,8 +59,40 @@ public class InstitutionSerivceImpl implements InstitutionService {
 			updateInstitution.setSchoolName(institution.getSchoolName());
 			Address  address = new Address(institution.getAddress().getAddress1(), institution.getAddress().getAddress2(), 
 					institution.getAddress().getArea(),institution.getAddress().getCity(), institution.getAddress().getPincode(), institution.getAddress().getStreet(),  institution.getAddress().getState());
-			updateInstitution.setAddress(address);
-			return repo.save(updateInstitution);
+			updateInstitution.setAddress(address);*/
+
+			if(institution.getDivisionProvided()!=null){
+				Set<AvailableGradesAndSections> availableGradesAndSections = institution.getAvailableGradesAndSections();
+				Set<AvailableGradesAndSections> newAvailableGradesAndSections = new HashSet<AvailableGradesAndSections>();
+				for(AvailableGradesAndSections availableGradesAndSectionsItr : availableGradesAndSections) {
+					AvailableGradesAndSections availableGradesAndSectionsObj = new AvailableGradesAndSections();
+					availableGradesAndSectionsObj.setDivision(availableGradesAndSectionsItr.getDivision());
+					Set<DivisionGrade> divisionGradeSet = availableGradesAndSectionsItr.getDivisionGrade();
+					Set<DivisionGrade> newDivisionGradeSet = new HashSet<DivisionGrade>();
+					for(DivisionGrade divisionGradeItr: divisionGradeSet) {
+						DivisionGrade divisionGradeObj = new DivisionGrade();
+						divisionGradeObj.setGrade(divisionGradeItr.getGrade());
+						Set<Section> sectionSet = new HashSet<>();
+						for(int i=0; i < Integer.parseInt(divisionGradeItr.getNumberOfSections()); i++) {
+
+							Section sec = new Section(sectionArray[i], false);
+							System.out.println(sec.toString());
+							sectionSet.add(sec);
+						}
+						divisionGradeObj.setSection(sectionSet);
+						newDivisionGradeSet.add(divisionGradeObj);
+					}
+
+					availableGradesAndSectionsObj.setDivisionGrade(newDivisionGradeSet);
+					newAvailableGradesAndSections.add(availableGradesAndSectionsObj);
+				}
+				institution.setAvailableGradesAndSections(newAvailableGradesAndSections);
+			}
+			institution.setAdminUser(updateInstitution.getAdminUser());
+			institution.setSchoolName(updateInstitution.getSchoolName());
+			institution.setOnboardingComplete(true);
+
+			return repo.save(institution);
 		}
 		
 	}
@@ -103,3 +134,22 @@ public class InstitutionSerivceImpl implements InstitutionService {
 	}
 
 }
+
+/*
+AvailableGradesAndSections newGradesAndSections = new AvailableGradesAndSections();
+					newGradesAndSections.setDivision(GradesAndSections.getDivision());
+
+					Set<DivisionGrade> divisionGrade = GradesAndSections.getDivisionGrade();
+					Set<DivisionGrade> newDivisionGradeSet = new TreeSet<>();
+					for(DivisionGrade divisionGradeItr : divisionGrade) {
+						Set<Section> sectionSet = divisionGradeItr.getSection();
+						DivisionGrade newDivisionGrade = new DivisionGrade();
+						newDivisionGrade.setGrade(divisionGradeItr.getGrade());
+
+
+
+						newDivisionGradeSet.add(newDivisionGrade);
+					}
+					newGradesAndSections.setDivisionGrade(newDivisionGradeSet);
+					newAvailableGradesAndSections.add(newGradesAndSections);
+ */

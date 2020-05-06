@@ -22,4 +22,6 @@ public interface TeacherService {
     public List<Teacher> findNonClassTeachers(long institutionId);
 
     public Optional<Teacher> findTeacherByGrade(Long institutionId,String grade, String name);
+
+    public void deleteTeacher(long institutionId, long id);
 }

@@ -29,5 +29,9 @@ public class Institution extends CustomAuditing {
     private String adminUser;
     private String phoneNumber;
     private Address address;
+    private Set<String> divisionProvided;
+    private Set<AvailableGradesAndSections> availableGradesAndSections;
+    private boolean onboardingComplete;
+
 
 }
