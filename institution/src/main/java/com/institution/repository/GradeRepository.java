@@ -26,4 +26,6 @@ public interface GradeRepository extends MongoRepository<Grade, Long> {
 
     public Grade findGradeByInstitutionIdAndTeacherId(Long institutionId, Long teacherId);
 
+    public Grade findGradeByInstitutionIdAndGradeAndSection(Long institutionId, String grade, String section);
+
 }

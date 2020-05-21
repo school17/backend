@@ -1,18 +1,17 @@
 package com.institution.service;
 
-import com.institution.controller.InstitutionController;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.institution.errorHandling.EntityNotFoundException;
+import com.institution.messageSystem.MessageSender;
 import com.institution.model.ApplicationUser;
 import com.institution.model.Grade;
-import com.institution.model.Institution;
 import com.institution.model.Teacher;
 import com.institution.repository.GradeRepository;
 import com.institution.repository.TeacherRepository;
-import com.mongodb.BasicDBObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,18 +20,20 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.*;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
     private final MongoTemplate mongoTemplate;
 
+    private final ImageService imageService;
+
     Logger logger = LoggerFactory.getLogger(TeacherServiceImpl.class);
 
     @Autowired
-    public TeacherServiceImpl(MongoTemplate mongoTemplate) {
+    public TeacherServiceImpl(MongoTemplate mongoTemplate, ImageService imageService) {
         this.mongoTemplate = mongoTemplate;
+        this.imageService = imageService;
     }
     @Autowired
     TeacherRepository teacherRepository;
@@ -46,6 +47,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     GradeRepository gradeRepository;
 
+    @Autowired
+    MessageSender messageSender;
+
     @Override
     public Teacher createTeacher(Teacher teacher) {
         InstitutionSerivceImpl institutionSerivce = new InstitutionSerivceImpl();
@@ -54,14 +58,15 @@ public class TeacherServiceImpl implements TeacherService {
         user.setRole("TEACHER");
         user.setPassword(institutionSerivce.generatePassword());
         user.setEmail(teacher.getEmail());
-        userService.createUser(user, Long.toString(teacher.getId()));
-
         teacher.setId(sequenceGenerator.generateSequence(Teacher.SEQUENCE_NAME));
+        userService.createUser(user, Long.toString(teacher.getId()));
         teacher.setApplicationUserId(user.getId());
-        System.out.println("CLASS TEACHER " + teacher.getClassTeacher());
         String isClassTeacher = teacher.getClassTeacher() == null ? "false" : "true";
         teacher.setClassTeacher(Optional.ofNullable(teacher.getClassTeacher()).orElse("NOT ASSIGNED"));
         teacher.setClassTeacher(isClassTeacher);
+        if(teacher.getPicture()!=null) {
+            imageService.uploadFile(teacher.getPicture(), teacher.getName());
+        }
         return teacherRepository.save(teacher);
     }
 
@@ -72,25 +77,21 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher updateTeacher(Teacher teacher) {
-        System.out.println("ID" + teacher.getId());
         Optional<Teacher>  teacher1 = teacherRepository.findById(teacher.getId());
+        Teacher updateTeacher = null;
         if(teacher1 == null) {
             throw new EntityNotFoundException(Teacher.class, "id", Long.toString(teacher.getId()));
         }else {
-           /*Teacher updateTeacher = teacher1.get();
-            updateTeacher.setAddress(teacher.getAddress());
-            updateTeacher.setDivision(teacher.getDivision());
-            updateTeacher.setEmail(teacher.getEmail());
-            updateTeacher.setGrades(teacher.getGrades());
-            updateTeacher.setSubjects(teacher.getSubjects());
-            updateTeacher.setGrade(teacher.getGrade());
-            updateTeacher.setPicture(teacher.getPicture());
-            updateTeacher.setName(teacher.getName());
-            updateTeacher.setClassTeacher(updateTeacher.getClassTeacher());*/
             teacher.setClassTeacher(teacher1.get().getClassTeacher());
-            return teacherRepository.save(teacher);
-            //return teacherRepository.save(updateTeacher);
-
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectReader objectReader = objectMapper.readerForUpdating(teacher1.get());
+            try {
+                updateTeacher= objectReader.readValue(objectMapper.writeValueAsString(teacher));
+                System.out.println("updatedStudent" + updateTeacher);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return teacherRepository.save(updateTeacher);
         }
 
     }

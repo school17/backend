@@ -18,4 +18,6 @@ public interface GradeService {
     public Page<Grade> searchGrades(Grade grade, long institutionId, Map<String,String> searchParam);
 
     public Grade updateGrade(Grade grade, Long institutionId, Long id);
+
+    public Grade findGradeByInstitutionIdAndGradeAndSection(Long institutionId, String grade, String section);
 }

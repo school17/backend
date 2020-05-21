@@ -2,7 +2,11 @@ package com.institution.service;
 
 import com.institution.errorHandling.EntityNotFoundException;
 import com.institution.model.Grade;
+import com.institution.model.Institution;
 import com.institution.model.Teacher;
+import com.institution.model.grade.AvailableGradesAndSections;
+import com.institution.model.grade.DivisionGrade;
+import com.institution.model.grade.Section;
 import com.institution.repository.GradeRepository;
 import com.institution.repository.TeacherRepository;
 import org.slf4j.Logger;
@@ -13,9 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class GradeServiceImpl implements GradeService {
@@ -29,11 +31,15 @@ public class GradeServiceImpl implements GradeService {
     @Autowired
     SequenceGeneratorService sequenceGenerator;
 
+    @Autowired
+    InstitutionService institutionService;
+
     Logger logger = LoggerFactory.getLogger(GradeServiceImpl.class);
 
     @Override
     public Grade createGrade(Grade grade) {
         grade.setId(sequenceGenerator.generateSequence(Grade.SEQUENCE_NAME));
+
         updateTeacher(grade);
         return repo.save(grade);
     }
@@ -68,6 +74,7 @@ public class GradeServiceImpl implements GradeService {
                     Teacher teach = teacher.get();
                     teach.setGrade("");
                     teach.setClassTeacher("false");
+                    teach.setPersisted(true);
                     teacherRepository.save(teach);
 
                 }
@@ -84,6 +91,11 @@ public class GradeServiceImpl implements GradeService {
         return repo.save(getGrade);
     }
 
+    @Override
+    public Grade findGradeByInstitutionIdAndGradeAndSection(Long institutionId, String grade, String section) {
+        return repo.findGradeByInstitutionIdAndGradeAndSection(institutionId, grade, section);
+    }
+
     public void updateTeacher(Grade grade) {
         logger.info("UPDATING TEACHER WHILE GRADE OPERATION");
         Optional<Teacher> teacher = teacherRepository.findTeacherByInstitutionIdAndId(grade.getInstitutionId()
@@ -94,6 +106,7 @@ public class GradeServiceImpl implements GradeService {
             Teacher teach = teacher.get();
             teach.setGrade(grade.getGrade() + " " + grade.getSection());
             teach.setClassTeacher("true");
+            teach.setPersisted(true);
             teacherRepository.save(teach);
 
         }

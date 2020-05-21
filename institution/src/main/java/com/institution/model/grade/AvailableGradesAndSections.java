@@ -1,9 +1,9 @@
-package com.institution.model;
+package com.institution.model.grade;
 
+import com.institution.model.grade.DivisionGrade;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.beans.Transient;
 import java.util.Set;
 
 @Data

@@ -3,6 +3,10 @@ spring:
     #data.mongodb.port: 27017
     #spring.data.mongodb.host: localhost
     data.mongodb.host: school-mongo
+    rabbitmq.host: 127.0.0.1
+    rabbitmq.port: 5672
+    rabbitmq.username: guest
+    rabbitmq.password: guest
     mail:
       host: smtp.gmail.com
       username: gomadsolutions@gmail.com
@@ -22,6 +26,12 @@ spring:
       test-connection: true
 
 
+
+amazonProperties:
+  endpointUrl: https://school1717.s3.ap-south-1.amazonaws.com
+  accessKey: AKIA4TFDQIHVXSV5CS7P
+  secretKey: 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
+  bucketName: school1717
 jwt:
   clientId: school
   client-secret: secret

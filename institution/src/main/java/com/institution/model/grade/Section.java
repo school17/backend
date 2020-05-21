@@ -1,4 +1,4 @@
-package com.institution.model;
+package com.institution.model.grade;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
