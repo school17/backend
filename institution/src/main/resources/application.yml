@@ -28,10 +28,10 @@ spring:
 
 
 amazonProperties:
-  endpointUrl: https://school1717.s3.ap-south-1.amazonaws.com
-  accessKey: AKIA4TFDQIHVXSV5CS7P
-  secretKey: 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
-  bucketName: school1717
+  endpointUrl:
+  accessKey:
+  secretKey:
+  bucketName: 
 jwt:
   clientId: school
   client-secret: secret
