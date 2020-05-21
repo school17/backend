@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="14a9bf0f-51a3-4371-b556-8619a8fd355e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/FileUpload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/events/StudentModelListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/messageSystem/MessageSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/StudentsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/AmazonClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/ImageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/InstitutionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/InstitutionApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/ApplicationUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/ApplicationUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/AvailableGradesAndSections.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/AvailableGradesAndSections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/DivisionGrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/DivisionGrade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Institution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/Section.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/GradeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/GradeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/InstitutionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/InstitutionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/InstitutionSerivceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/InstitutionSerivceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nginx/conf.d/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx/conf.d/app.conf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bySjlgEbTFtGM04d55gpogcA5w" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="RealtimeserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.realtimeserver.RealtimeserverApplication" />
+      <module name="main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.realtimeserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RealtimeserverApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14a9bf0f-51a3-4371-b556-8619a8fd355e" name="Default Changelist" comment="" />
+      <created>1589602977111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589602977111</updated>
+    </task>
+    <servers />
+  </component>
+</project>
