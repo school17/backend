@@ -3,8 +3,11 @@ package com.institution.service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.institution.controller.InstitutionController;
 import com.institution.model.*;
+import com.institution.model.grade.AvailableGradesAndSections;
+import com.institution.model.grade.DivisionGrade;
+import com.institution.model.grade.Section;
+import com.institution.repository.GradeRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.institution.errorHandling.EntityNotFoundException;
 import com.institution.repository.InstitutionRepository;
-import com.institution.service.SequenceGeneratorService;
 
 @Service
 public class InstitutionSerivceImpl implements InstitutionService {
@@ -26,6 +28,9 @@ public class InstitutionSerivceImpl implements InstitutionService {
 
 	@Autowired
 	UserServiceDao userService;
+
+	@Autowired
+	GradeRepository gradeRepository;
 
 
 	@Override
@@ -51,16 +56,6 @@ public class InstitutionSerivceImpl implements InstitutionService {
 		}else {
 			Institution updateInstitution = getInstitution.get();
 			institution.setId(institutionId);
-			/*updateInstitution.setBranch(institution.getBranch());
-			updateInstitution.setEmail(institution.getEmail());
-			updateInstitution.setGrades(institution.getGrades());
-			updateInstitution.setMode(institution.getMode());
-			updateInstitution.setPhoneNumber(institution.getPhoneNumber());
-			updateInstitution.setSchoolName(institution.getSchoolName());
-			Address  address = new Address(institution.getAddress().getAddress1(), institution.getAddress().getAddress2(), 
-					institution.getAddress().getArea(),institution.getAddress().getCity(), institution.getAddress().getPincode(), institution.getAddress().getStreet(),  institution.getAddress().getState());
-			updateInstitution.setAddress(address);*/
-
 			if(institution.getDivisionProvided()!=null){
 				Set<AvailableGradesAndSections> availableGradesAndSections = institution.getAvailableGradesAndSections();
 				Set<AvailableGradesAndSections> newAvailableGradesAndSections = new HashSet<AvailableGradesAndSections>();
@@ -78,6 +73,12 @@ public class InstitutionSerivceImpl implements InstitutionService {
 							Section sec = new Section(sectionArray[i], false);
 							System.out.println(sec.toString());
 							sectionSet.add(sec);
+							Grade grade = new Grade(divisionGradeItr.getGrade(), sec.getSection(),
+									availableGradesAndSectionsItr.getDivision(), institutionId);
+							grade.setId(sequenceGenerator.generateSequence(Grade.SEQUENCE_NAME));
+							System.out.println(grade.toString());
+							gradeRepository.save(grade);
+
 						}
 						divisionGradeObj.setSection(sectionSet);
 						newDivisionGradeSet.add(divisionGradeObj);
@@ -91,6 +92,7 @@ public class InstitutionSerivceImpl implements InstitutionService {
 			institution.setAdminUser(updateInstitution.getAdminUser());
 			institution.setSchoolName(updateInstitution.getSchoolName());
 			institution.setOnboardingComplete(true);
+
 
 			return repo.save(institution);
 		}
@@ -134,22 +136,3 @@ public class InstitutionSerivceImpl implements InstitutionService {
 	}
 
 }
-
-/*
-AvailableGradesAndSections newGradesAndSections = new AvailableGradesAndSections();
-					newGradesAndSections.setDivision(GradesAndSections.getDivision());
-
-					Set<DivisionGrade> divisionGrade = GradesAndSections.getDivisionGrade();
-					Set<DivisionGrade> newDivisionGradeSet = new TreeSet<>();
-					for(DivisionGrade divisionGradeItr : divisionGrade) {
-						Set<Section> sectionSet = divisionGradeItr.getSection();
-						DivisionGrade newDivisionGrade = new DivisionGrade();
-						newDivisionGrade.setGrade(divisionGradeItr.getGrade());
-
-
-
-						newDivisionGradeSet.add(newDivisionGrade);
-					}
-					newGradesAndSections.setDivisionGrade(newDivisionGradeSet);
-					newAvailableGradesAndSections.add(newGradesAndSections);
- */

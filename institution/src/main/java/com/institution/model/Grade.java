@@ -26,7 +26,7 @@ public class Grade extends CustomAuditing {
 
     private String teacher;
 
-    private String strength;
+    private long strength;
 
     private String division;
 
@@ -41,4 +41,11 @@ public class Grade extends CustomAuditing {
     private  long previousTeacherId;
 
 
+    public Grade(String grade, String section, String division, long institutionId) {
+        this.setGrade(grade);
+        this.setSection(section);
+        this.setDivision(division);
+        this.setInstitutionId(institutionId);
+        this.setTeacher("");
+    }
 }

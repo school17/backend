@@ -29,7 +29,9 @@ public class UserServiceImpl implements UserServiceDao {
 		applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
 		applicationUser.setRole(applicationUser.getRole());
 		applicationUser.setTemporaryPassword(true);
-		applicationUser.setInstitution(institutionId);
+		if(applicationUser.getInstitution() == null) {
+			applicationUser.setInstitution(institutionId);
+		}
 		applicationUser.setId(sequenceGenerator.generateSequence(ApplicationUser.SEQUENCE_NAME));
 		userRepo.save(applicationUser);
 		emailService.sendMail(applicationUser.getEmail(), "New User Creation", "Welcome you user name is " +

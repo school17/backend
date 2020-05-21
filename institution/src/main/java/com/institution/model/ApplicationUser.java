@@ -1,18 +1,15 @@
 package com.institution.model;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 @Document(collection = "users")
 @Getter @Setter @NoArgsConstructor @ToString
+@AllArgsConstructor
 public class ApplicationUser extends CustomAuditing {
 
 	@Transient
