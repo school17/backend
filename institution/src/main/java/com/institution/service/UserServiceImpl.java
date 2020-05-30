@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserServiceDao {
 	public void createUser(ApplicationUser applicationUser, String institutionId) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		String tempPassword = applicationUser.getPassword();
+		System.out.println(tempPassword);
 		applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
 		applicationUser.setRole(applicationUser.getRole());
 		applicationUser.setTemporaryPassword(true);

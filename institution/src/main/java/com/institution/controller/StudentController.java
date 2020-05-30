@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,6 +48,17 @@ public class StudentController {
             @PathVariable(value = "studentId") Long studentId
     ) {
         return studentService.updateStudent(student, institutionId, studentId);
+    }
+
+
+    @GetMapping("/{institutionId}/students/{grade}/{section}")
+
+    public List<Student> getGradeStudents(
+            @PathVariable(value = "institutionId") Long institutionId,
+            @PathVariable(value = "grade") String grade,
+            @PathVariable(value = "section") String section
+    ){
+     return studentService.getStudentByGradeAndSection(institutionId,grade,section);
     }
 
 }

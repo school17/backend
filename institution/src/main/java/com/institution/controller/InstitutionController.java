@@ -41,7 +41,7 @@ public class InstitutionController {
 		return institutionSerivce.updateInstitutionDetails(institution, institutionId);
 	}
 	
-	@PreAuthorize("hasAuthority('ADMIN')")  
+	@PreAuthorize("hasAnyAuthority('ADMIN', 'TEACHER')")
 	@GetMapping("/institutions")
 	public List<Institution> findAllInstitution() {
 		return institutionSerivce.findAllInstitution();

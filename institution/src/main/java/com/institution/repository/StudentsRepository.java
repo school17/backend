@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentsRepository extends MongoRepository<Student, Long> {
@@ -15,4 +16,6 @@ public interface StudentsRepository extends MongoRepository<Student, Long> {
     Page<Student>  searchStudent(String name, String email, String grade, String section, long institutionId, Pageable pageable);
 
     Optional<Student> findByInstitutionIdAndId(long institutionId, long id);
+
+    List<Student> findByInstitutionIdAndGradeAndSection(long institutionId, String Grade, String Section);
 }
