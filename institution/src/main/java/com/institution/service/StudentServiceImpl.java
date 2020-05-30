@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -120,4 +121,9 @@ public class StudentServiceImpl implements StudentService {
             }
 
         }
+
+    @Override
+    public List<Student> getStudentByGradeAndSection(long institutionId, String grade, String section) {
+        return studentsRepository.findByInstitutionIdAndGradeAndSection(institutionId,grade,section);
+    }
 }

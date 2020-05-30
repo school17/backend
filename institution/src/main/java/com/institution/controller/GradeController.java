@@ -20,7 +20,6 @@ public class GradeController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/{institutionId}/create_grade")
     public Grade createGrade(@RequestBody Grade grade){
-
         return service.createGrade(grade);
     }
 
