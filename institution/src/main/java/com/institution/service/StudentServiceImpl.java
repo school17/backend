@@ -68,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
             gradeRepository.save(grade);
         }
         if(student.getPicture()!=null) {
-            imageService.uploadFile(student.getPicture(), student.getName());
+            //imageService.uploadFile(student.getPicture(), student.getName());
         }
         return studentsRepository.save(student);
     }
