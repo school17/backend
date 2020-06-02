@@ -6,10 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.institution.errorHandling.EntityNotFoundException;
 import com.institution.model.Student;
-import com.institution.model.Test;
+
+import com.institution.model.test.Test;
+
 import com.institution.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;

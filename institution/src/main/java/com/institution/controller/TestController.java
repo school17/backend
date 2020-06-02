@@ -2,7 +2,8 @@ package com.institution.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.institution.model.Test;
+import com.institution.model.test.Test;
+
 import com.institution.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
