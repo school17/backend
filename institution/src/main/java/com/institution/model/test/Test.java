@@ -1,4 +1,4 @@
-package com.institution.model;
+package com.institution.model.test;
 
 
 import lombok.Getter;
@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Document(collection = "tests")
 @Getter
@@ -33,4 +34,6 @@ public class Test {
 
     @NotEmpty
     private String grade;
+
+    private Set<Schedule> schedule;
 }
