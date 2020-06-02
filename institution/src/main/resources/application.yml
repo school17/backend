@@ -1,8 +1,8 @@
 spring:
-    data.mongodb.database: school-db
+    #data.mongodb.database: school-db
     data.mongodb.port: 27017
     spring.data.mongodb.host: localhost
-    #data.mongodb.host: school-mongo
+    data.mongodb.host: school-mongo
     #data.mongodb.uri: mongodb://root:root123@ds019470.mlab.com:19470/school-db?retryWrites=false
     rabbitmq.host: 127.0.0.1
     rabbitmq.port: 5672
