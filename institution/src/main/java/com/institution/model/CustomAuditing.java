@@ -7,6 +7,9 @@ import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.util.Date;
+
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,7 +17,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 public class CustomAuditing  {
 
     @CreatedDate
-    private String createdAt;
+    private Date createdAt;
     @LastModifiedDate
-    private String lastModified;
+    private Date lastModified;
 }

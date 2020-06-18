@@ -59,13 +59,13 @@ public class TeacherServiceImpl implements TeacherService {
         user.setPassword(institutionSerivce.generatePassword());
         user.setEmail(teacher.getEmail());
         teacher.setId(sequenceGenerator.generateSequence(Teacher.SEQUENCE_NAME));
-        userService.createUser(user, Long.toString(teacher.getId()));
+        userService.createUser(user, teacher.getInstitutionId());
         teacher.setApplicationUserId(user.getId());
         String isClassTeacher = teacher.getClassTeacher() == null ? "false" : "true";
         teacher.setClassTeacher(Optional.ofNullable(teacher.getClassTeacher()).orElse("NOT ASSIGNED"));
         teacher.setClassTeacher(isClassTeacher);
         if(teacher.getPicture()!=null) {
-            imageService.uploadFile(teacher.getPicture(), teacher.getName());
+            //imageService.uploadFile(teacher.getPicture(), teacher.getName());
         }
         return teacherRepository.save(teacher);
     }
@@ -87,7 +87,6 @@ public class TeacherServiceImpl implements TeacherService {
             ObjectReader objectReader = objectMapper.readerForUpdating(teacher1.get());
             try {
                 updateTeacher= objectReader.readValue(objectMapper.writeValueAsString(teacher));
-                System.out.println("updatedStudent" + updateTeacher);
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -165,5 +164,10 @@ public class TeacherServiceImpl implements TeacherService {
             }
             teacherRepository.deleteByInstitutionIdAndId(institutionId, id);
         }
+    }
+
+    @Override
+    public Teacher getTeacherDetails(long institutionId, String email) {
+        return teacherRepository.findTeacherByInstitutionIdAndEmail(institutionId, email);
     }
 }

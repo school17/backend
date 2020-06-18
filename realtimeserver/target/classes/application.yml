@@ -1,2 +1,6 @@
 server:
   port: 8082
+  rabbitmq.custom.some-event.host: 13.58.111.197
+  rabbitmq.custom.some-event.port: 5672
+  rabbitmq.custom.some-event.username: guest
+  rabbitmq.custom.some-event.password: guest

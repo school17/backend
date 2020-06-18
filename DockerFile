@@ -1,9 +1,24 @@
-FROM rabbitmq:latest
+#FROM rabbitmq:3.6.11-management-alpine
 
-RUN rabbitmq-plugins enable rabbitmq_stomp
-RUN rabbitmq-plugins enable rabbitmq_web_stomp
+#RUN rabbitmq-plugins enable rabbitmq_stomp
+#RUN rabbitmq-plugins enable rabbitmq_web_stomp
+#RUN rabbitmq-plugins enable --offline rabbitmq_management
+#RUN rabbitmq-plugins enable --offline rabbitmq_stomp
+#RUN rabbitmq-plugins enable rabbitmq_management
+
+##EXPOSE 61613
+#EXPOSE 15674
+#EXPOSE 15672
+
+#FROM rabbitmq:3.7-management
+#RUN rabbitmq-plugins enable rabbitmq_stomp
+#COPY rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
+
+
+FROM rabbitmq
+
 RUN rabbitmq-plugins enable --offline rabbitmq_management
+RUN rabbitmq-plugins enable --offline rabbitmq_stomp
+RUN rabbitmq-plugins enable --offline rabbitmq_web_stomp
 
-EXPOSE 61613
-EXPOSE 15674
-EXPOSE 15672
+EXPOSE 15671 15672 15674 61613

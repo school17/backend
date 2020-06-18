@@ -15,7 +15,6 @@ public class FileUpload {
     ImageService imageService;
     @PostMapping("/upload")
     public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-        System.out.println("GETTING INSIDE IMAGE UPLOAD");
         imageService.uploadFile(file, "DemoFile");
         return "done";
     }

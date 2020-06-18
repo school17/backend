@@ -43,7 +43,7 @@ public class InstitutionSerivceImpl implements InstitutionService {
 		logger.info("password generation " + generatePassword());
 		user.setPassword(generatePassword());
 		user.setEmail(institution.getAdminUser());
-		userService.createUser(user, Long.toString(institution.getId()));
+		userService.createUser(user, institution.getId());
 		return repo.save(institution);
 	}
 
@@ -71,12 +71,10 @@ public class InstitutionSerivceImpl implements InstitutionService {
 						for(int i=0; i < Integer.parseInt(divisionGradeItr.getNumberOfSections()); i++) {
 
 							Section sec = new Section(sectionArray[i], false);
-							System.out.println(sec.toString());
 							sectionSet.add(sec);
 							Grade grade = new Grade(divisionGradeItr.getGrade(), sec.getSection(),
 									availableGradesAndSectionsItr.getDivision(), institutionId);
 							grade.setId(sequenceGenerator.generateSequence(Grade.SEQUENCE_NAME));
-							System.out.println(grade.toString());
 							gradeRepository.save(grade);
 
 						}

@@ -8,17 +8,15 @@ import com.institution.messageSystem.MessageSender;
 import com.institution.model.ApplicationUser;
 import com.institution.model.Grade;
 import com.institution.model.Student;
-import com.institution.model.Teacher;
 import com.institution.repository.GradeRepository;
 import com.institution.repository.StudentsRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.DataInput;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,6 +47,9 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     MessageSender messageSender;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     @Override
     public Student createStudent(Student student, long institutionId) {
@@ -58,17 +59,18 @@ public class StudentServiceImpl implements StudentService {
         user.setRole("STUDENT");
         user.setPassword(institutionSerivce.generatePassword());
         user.setEmail(student.getEmail());
+        user.setInstitution(institutionId);
         student.setId(sequenceGenerator.generateSequence(Student.SEQUENCE_NAME));
         student.setApplicationUserId(user.getId());
         student.setInstitutionId(institutionId);
-        userService.createUser(user, Long.toString(student.getId()));
+        userService.createUser(user, institutionId);
        Grade grade = gradeService.findGradeByInstitutionIdAndGradeAndSection(student.getInstitutionId(), student.getGrade(), student.getSection());
         if(grade !=null) {
             grade.setStrength(grade.getStrength() + 1);
             gradeRepository.save(grade);
         }
         if(student.getPicture()!=null) {
-            //imageService.uploadFile(student.getPicture(), student.getName());
+            //student.setPicture(imageService.uploadFile(student.getPicture(), student.getName()));
         }
         return studentsRepository.save(student);
     }
@@ -100,7 +102,6 @@ public class StudentServiceImpl implements StudentService {
             ObjectReader objectReader = objectMapper.readerForUpdating(student1.get());
                 try {
                    updatedStudent= objectReader.readValue(objectMapper.writeValueAsString(student));
-                   System.out.println("updatedStudent" + updatedStudent);
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -125,5 +126,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getStudentByGradeAndSection(long institutionId, String grade, String section) {
         return studentsRepository.findByInstitutionIdAndGradeAndSection(institutionId,grade,section);
+    }
+
+    @Override
+    public Student getStudentDetails(long institutionId, String email) {
+        return studentsRepository.findByInstitutionIdAndEmail(institutionId, email);
     }
 }

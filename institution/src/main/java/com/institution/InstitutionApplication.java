@@ -34,23 +34,4 @@ public class InstitutionApplication {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-	/*@Bean
-	Queue queue(){return new Queue("demo-queue", false);}
-
-	@Bean
-	TopicExchange exchange() {return  new TopicExchange("demo-exchange");}
-
-	@Bean
-	Binding binding(Queue queue, TopicExchange topicExchange){
-		return  BindingBuilder.bind(queue).to(topicExchange).with("demo-queue");
-	}
-
-	@Bean
-	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory) {
-		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-		container.setConnectionFactory(connectionFactory);
-		container.setQueueNames("demo-queue");
-		return container;
-	}*/
 }

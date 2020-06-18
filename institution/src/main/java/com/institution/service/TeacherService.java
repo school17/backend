@@ -24,4 +24,6 @@ public interface TeacherService {
     public Optional<Teacher> findTeacherByGrade(Long institutionId,String grade, String name);
 
     public void deleteTeacher(long institutionId, long id);
+
+    public Teacher getTeacherDetails(long institutionId, String email);
 }

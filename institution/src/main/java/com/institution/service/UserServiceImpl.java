@@ -23,20 +23,20 @@ public class UserServiceImpl implements UserServiceDao {
 	@Autowired
 	SequenceGeneratorService sequenceGenerator;
 	@Override
-	public void createUser(ApplicationUser applicationUser, String institutionId) {
+	public void createUser(ApplicationUser applicationUser, long institutionId) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		String tempPassword = applicationUser.getPassword();
 		System.out.println(tempPassword);
 		applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
 		applicationUser.setRole(applicationUser.getRole());
 		applicationUser.setTemporaryPassword(true);
-		if(applicationUser.getInstitution() == null) {
-			applicationUser.setInstitution(institutionId);
-		}
+		//if(applicationUser.getInstitution() > 0) {
+		applicationUser.setInstitution(institutionId);
+		//}
 		applicationUser.setId(sequenceGenerator.generateSequence(ApplicationUser.SEQUENCE_NAME));
 		userRepo.save(applicationUser);
-		emailService.sendMail(applicationUser.getEmail(), "New User Creation", "Welcome you user name is " +
-				applicationUser.getEmail() + " and temporary password is "+tempPassword);
+		//emailService.sendMail(applicationUser.getEmail(), "New User Creation", "Welcome you user name is " +
+				//applicationUser.getEmail() + " and temporary password is "+tempPassword);
 
 	}
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserServiceDao {
 		userRepo.save(user);
 	}
 
-	public ApplicationUser getUser(String email, String institutionId) {
+	public ApplicationUser getUser(String email, long institutionId) {
 		ApplicationUser user =  userRepo.findApplicationUserByEmailAndInstitution(email, institutionId);
 		if(user == null) {
 			throw new EntityNotFoundException(ApplicationUser.class, "id", email);

@@ -7,19 +7,19 @@ import java.util.Collection;
 public class CustomUser extends User {
     private static final long serialVersionUID = -3531439484732724601L;
 
-    private String institutionId;
+    private long institutionId;
 
-    public CustomUser(String username, String password, Collection authorities, String institutionId){
+    public CustomUser(String username, String password, Collection authorities, long institutionId){
         super(username, password, authorities);
         this.institutionId = institutionId;
 
     }
 
-    public String getInstitutionId() {
+    public long getInstitutionId() {
         return institutionId;
     }
 
-    public void setInstitutionId(String institutionId) {
+    public void setInstitutionId(long institutionId) {
         this.institutionId = institutionId;
     }
 

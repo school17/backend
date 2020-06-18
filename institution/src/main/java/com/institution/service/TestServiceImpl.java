@@ -48,17 +48,14 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Test upateTest(Long institutionId, String division, String grade, Test test) throws JsonProcessingException {
-        Test updatedTest  = null;
         Optional<Test> testOptional = testRepository.findTestByInstitutionIdAndId(institutionId, test.getId());
         if(testOptional == null)
             throw new EntityNotFoundException(Student.class, "id", Long.toString(test.getId()));
         else{
-            ObjectMapper objectMapper = new ObjectMapper();
-            ObjectReader objectReader = objectMapper.readerForUpdating(testOptional.get());
-            updatedTest= objectReader.readValue(objectMapper.writeValueAsString(test));
+            Test t = testOptional.get();
+            t = test;
+            return testRepository.save(t);
         }
-
-        return testRepository.save(updatedTest);
     }
 
     @Override

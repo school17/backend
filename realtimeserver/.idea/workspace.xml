@@ -1,45 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="14a9bf0f-51a3-4371-b556-8619a8fd355e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/FileUpload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/StudentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/events/StudentModelListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/messageSystem/MessageSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/StudentsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/AmazonClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/ImageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentServiceImpl.java" afterDir="false" />
+    <list default="true" id="c6bd9086-bfb8-4b0f-91b4-0c258fa0cd7b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/events/NotificationModelListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/NotificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/NotificationImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/PushNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/5.2.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/5.2.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerFile" beforeDir="false" afterPath="$PROJECT_DIR$/../DockerFile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/InstitutionApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/InstitutionApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/CreateInstitutionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/CreateInstitutionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/FileUpload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/messageSystem/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/messageSystem/MessageSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/ApplicationUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/ApplicationUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/AvailableGradesAndSections.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/AvailableGradesAndSections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/DivisionGrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/DivisionGrade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/CustomAuditing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/CustomAuditing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/CustomUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/CustomUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Institution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/grade/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/model/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/GradeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/GradeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/InstitutionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/InstitutionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/GradeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/StudentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/StudentsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/TeacherRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/security/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/security/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/AmazonClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/AmazonClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/ImageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/InstitutionSerivceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/InstitutionSerivceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TeacherServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/TestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/java/com/institution/service/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../institution/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../institution/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../nginx/conf.d/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/../nginx/conf.d/app.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/maven_wrapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/maven_wrapper2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/.mvn.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/realtimeserver/RealtimeserverApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/realtimeserver/controller/RealtimeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/realtimeserver/controller/WebSocketListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/realtimeserver/controller/WebSocketListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/realtimeserver/weboscketconfiguration/WebsocketConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/realtimeserver/RealtimeserverApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.example/realtimeserver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.example/realtimeserver/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/realtimeserver/RealtimeserverApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/realtimeserver/controller/RealtimeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/realtimeserver/controller/WebSocketListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/realtimeserver/controller/WebSocketListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/realtimeserver/weboscketconfiguration/WebsocketConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/realtimeserver/RealtimeserverApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1bySjlgEbTFtGM04d55gpogcA5w" />
+  <component name="ProjectId" id="1cxJuoJRQlpm0oAI0dtbKFTYqEW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -48,11 +115,31 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
-    <configuration name="RealtimeserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.realtimeserver.RealtimeserverApplication" />
-      <module name="main" />
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Realtimeserver1Application (1)">
+    <configuration name="Realtimeserver1Application (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.realtimeserver.Realtimeserver1Application" />
+      <module name="realtimeserver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.realtimeserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Realtimeserver1Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.realtimeserver.Realtimeserver1Application" />
+      <module name="realtimeserver-1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.realtimeserver.*" />
@@ -65,7 +152,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RealtimeserverApplication" />
+        <item itemvalue="Application.Realtimeserver1Application (1)" />
+        <item itemvalue="Application.Realtimeserver1Application" />
       </list>
     </recent_temporary>
   </component>
@@ -74,12 +162,58 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="14a9bf0f-51a3-4371-b556-8619a8fd355e" name="Default Changelist" comment="" />
-      <created>1589602977111</created>
+      <changelist id="c6bd9086-bfb8-4b0f-91b4-0c258fa0cd7b" name="Default Changelist" comment="" />
+      <created>1591464535635</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589602977111</updated>
+      <updated>1591464535635</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom" timestamp="1592468980329">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state width="1398" height="254" key="GridCell.Tab.0.bottom/0.23.1440.828@0.23.1440.828" timestamp="1592468980329" />
+    <state width="1398" height="254" key="GridCell.Tab.0.center" timestamp="1592468980329">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state width="1398" height="254" key="GridCell.Tab.0.center/0.23.1440.828@0.23.1440.828" timestamp="1592468980329" />
+    <state width="1398" height="254" key="GridCell.Tab.0.left" timestamp="1592468980328">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state width="1398" height="254" key="GridCell.Tab.0.left/0.23.1440.828@0.23.1440.828" timestamp="1592468980328" />
+    <state width="1398" height="254" key="GridCell.Tab.0.right" timestamp="1592468980329">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state width="1398" height="254" key="GridCell.Tab.0.right/0.23.1440.828@0.23.1440.828" timestamp="1592468980329" />
+    <state x="258" y="99" key="Maven.ArtifactSearchDialog" timestamp="1591467696403">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="258" y="99" key="Maven.ArtifactSearchDialog/0.23.1440.828@0.23.1440.828" timestamp="1591467696403" />
+    <state x="221" y="76" key="SettingsEditor" timestamp="1591805330840">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="221" y="76" key="SettingsEditor/0.23.1440.828@0.23.1440.828" timestamp="1591805330840" />
+    <state x="420" y="194" width="600" height="486" key="find.popup" timestamp="1591972072934">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="420" y="194" width="600" height="486" key="find.popup/0.23.1440.828@0.23.1440.828" timestamp="1591972072934" />
+    <state x="385" y="198" width="670" height="675" key="run.anything.popup" timestamp="1591973151621">
+      <screen x="0" y="23" width="1440" height="828" />
+    </state>
+    <state x="385" y="198" width="670" height="675" key="run.anything.popup/0.23.1440.828@0.23.1440.828" timestamp="1591973151621" />
   </component>
 </project>
