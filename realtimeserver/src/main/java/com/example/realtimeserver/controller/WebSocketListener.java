@@ -7,15 +7,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 
 @Component
-public class WebSocketListener {
-
-	 @Autowired
+public class WebsocketListener {
+	@Autowired
 	 private SimpMessageSendingOperations messagingTemplate;
-	 
-	 @EventListener
-	    public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-	        System.out.println("Received a new web socket connection");
-	 }
-	 
-	 
+	
+	@EventListener
+    public void handleWebSocketConnectListener(SessionConnectedEvent event) {
+        System.out.println("Received a new web socket connection");
+ }
+
 }

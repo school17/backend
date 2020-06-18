@@ -51,8 +51,9 @@ public class AmazonClient {
                 .build();
     }
 
-    @Async
-    public void uploadFile(String base64, String fileName) {
+    //@Async
+    public String uploadFile(String base64, String fileName) {
+        String url = "";
         try{
             StringTokenizer tokenizer = new StringTokenizer(base64, ",");
             String baseString = tokenizer.nextToken();
@@ -60,10 +61,13 @@ public class AmazonClient {
             byte[] base64Val=convertToImg(image);
             this.uploadFileTos3bucket(fileName+".png",
                     writeByteToImageFile(base64Val, fileName+"image.png"));
+            url = "https://school1719.s3.ap-south-1.amazonaws.com/"+fileName+".png";
         }catch(IOException e){
             logger.info("FAILURE TO CONVERT DATA");
             e.printStackTrace();
         }
+
+        return url;
 
     }
 

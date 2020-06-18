@@ -18,4 +18,6 @@ public interface StudentsRepository extends MongoRepository<Student, Long> {
     Optional<Student> findByInstitutionIdAndId(long institutionId, long id);
 
     List<Student> findByInstitutionIdAndGradeAndSection(long institutionId, String Grade, String Section);
+
+    Student findByInstitutionIdAndEmail(long institutionId, String email);
 }

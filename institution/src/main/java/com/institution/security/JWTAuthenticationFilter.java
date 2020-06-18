@@ -64,7 +64,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	    		authorities.add(authority);
 	    	}
 	    	Date expiryDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
-	    	System.out.println(expiryDate);
 	    	CustomUser user = (CustomUser) auth.getPrincipal();
 			String token = JWT.create()
 	        		.withSubject(((CustomUser) auth.getPrincipal()).getUsername())

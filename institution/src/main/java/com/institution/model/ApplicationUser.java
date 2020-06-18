@@ -24,7 +24,7 @@ public class ApplicationUser extends CustomAuditing {
 	private String role;
 	private String passwordExpiry;
 	private boolean isTemporaryPassword;
-	private String institution;
+	private long institution;
 	
 
 }

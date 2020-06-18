@@ -7,10 +7,10 @@ import com.institution.model.ApplicationUser;
 @Service
 public interface UserServiceDao {
 	
-	public void createUser(ApplicationUser applicationUser, String institutionId);
+	public void createUser(ApplicationUser applicationUser, long institutionId);
 
 	public void updatePassword(ApplicationUser applicationUser);
 
-	public ApplicationUser getUser(String email, String institutionId);
+	public ApplicationUser getUser(String email, long institutionId);
 
 }

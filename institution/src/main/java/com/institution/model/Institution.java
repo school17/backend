@@ -3,6 +3,7 @@ package com.institution.model;
 import java.util.Set;
 
 import com.institution.model.grade.AvailableGradesAndSections;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +14,7 @@ import lombok.Setter;
 
 @Document(collection = "institutions")
 @Getter @Setter @NoArgsConstructor
+@ToString
 public class Institution extends CustomAuditing {
 
 	@Transient

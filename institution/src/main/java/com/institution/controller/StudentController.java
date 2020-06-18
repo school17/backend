@@ -61,4 +61,10 @@ public class StudentController {
      return studentService.getStudentByGradeAndSection(institutionId,grade,section);
     }
 
+    @GetMapping("/{institutionId}/students/{email}")
+    public Student getStudentDetails( @PathVariable(value = "institutionId") Long institutionId,
+                                      @PathVariable(value = "email") String email) {
+        return studentService.getStudentDetails(institutionId, email);
+    }
+
 }

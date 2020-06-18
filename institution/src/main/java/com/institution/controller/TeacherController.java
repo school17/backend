@@ -79,5 +79,12 @@ public class TeacherController {
 
     }
 
+    @GetMapping("/{institutionId}/teachers/{email}")
+
+    public Teacher getTeacherDetails(@PathVariable(value = "institutionId") Long institutionId,
+                                     @PathVariable(value = "email") String email) {
+        return teacherService.getTeacherDetails(institutionId, email);
+    }
+
 
 }

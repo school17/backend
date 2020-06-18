@@ -33,4 +33,6 @@ public interface TeacherRepository extends MongoRepository<Teacher, Long> {
 
     void deleteByInstitutionIdAndId(long InstitutionId, long id);
 
+    Teacher findTeacherByInstitutionIdAndEmail(long InstitutionId, String email);
+
 }

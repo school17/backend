@@ -1,10 +1,12 @@
 spring:
-    #data.mongodb.database: school-db
+    #data.mongodb.host: school-db
+    #data.mongodb.host: school-mongo
     data.mongodb.port: 27017
-    spring.data.mongodb.host: localhost
-    data.mongodb.host: school-mongo
-    #data.mongodb.uri: mongodb://root:root123@ds019470.mlab.com:19470/school-db?retryWrites=false
-    rabbitmq.host: 127.0.0.1
+    data.mongodb.host: localhost
+    data.mongodb.database: school-mongo
+    #data.mongodb.uri: mongodb://root:root123@ds019470.mlab.com:19470/school-db?retryWrites=falsego
+    #data.mongodb.uri: mongodb://development:secret@13.58.111.197/school-db
+    rabbitmq.host: localhost
     rabbitmq.port: 5672
     rabbitmq.username: guest
     rabbitmq.password: guest

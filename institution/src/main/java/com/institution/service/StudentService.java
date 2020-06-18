@@ -17,4 +17,6 @@ public interface StudentService {
     public Student updateStudent(Student student, long institutionId, long studentId);
 
     public List<Student> getStudentByGradeAndSection(long institutionId, String grade, String section);
+
+    public Student getStudentDetails(long institutionId, String email);
 }

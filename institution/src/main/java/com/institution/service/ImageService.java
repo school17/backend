@@ -16,7 +16,7 @@ public class ImageService {
         return this.amazonClient.uploadFile(file);
     }
 
-    public void uploadFile(String base64, String fileName){
-        this.amazonClient.uploadFile(base64, fileName);
+    public String uploadFile(String base64, String fileName){
+        return this.amazonClient.uploadFile(base64, fileName);
     }
 }
