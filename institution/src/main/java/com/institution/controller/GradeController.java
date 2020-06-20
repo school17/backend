@@ -23,12 +23,13 @@ public class GradeController {
         return service.createGrade(grade);
     }
 
+
     @GetMapping("{institutionId}/grades")
     public List<Grade> getGrades(@PathVariable(value = "institutionId") String institutionId) {
         return service.listAllGrades(institutionId);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/{institutionId}/grades/search")
 
     public Page<Grade> findGrades(@RequestBody Grade grade,
