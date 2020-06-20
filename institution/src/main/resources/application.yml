@@ -34,7 +34,7 @@ amazonProperties:
   endpointUrl:
   accessKey:
   secretKey:
-  bucketName: 
+  bucketName:
 jwt:
   clientId: school
   client-secret: secret
