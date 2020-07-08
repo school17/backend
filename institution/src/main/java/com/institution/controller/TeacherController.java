@@ -42,7 +42,7 @@ public class TeacherController {
     public Teacher updateTeacher(@RequestBody Teacher teacher, @PathVariable(value = "institutionId") Long institutionId, @PathVariable(value = "teacherId") Long Id)
             throws EntityNotFoundException
     {
-        return  teacherService.updateTeacher(teacher);
+        return  teacherService.updateTeacher(teacher, Id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -84,6 +84,14 @@ public class TeacherController {
     public Teacher getTeacherDetails(@PathVariable(value = "institutionId") Long institutionId,
                                      @PathVariable(value = "email") String email) {
         return teacherService.getTeacherDetails(institutionId, email);
+    }
+
+    @PutMapping("/{institutionId}/teacher/{name}/timetable/{day}/{period}")
+    public void UpdateTeacherTimeTable(@PathVariable(value = "institutionId") Long institutionId,
+                                       @PathVariable(value = "day") String day,
+                                       @PathVariable(value = "period") String period,
+                                       @PathVariable(value = "name") String name) {
+        teacherService.updateTeacherTimeTableOnDelete(institutionId, name, day, period);
     }
 
 

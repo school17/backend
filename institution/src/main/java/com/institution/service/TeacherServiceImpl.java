@@ -7,6 +7,7 @@ import com.institution.messageSystem.MessageSender;
 import com.institution.model.ApplicationUser;
 import com.institution.model.Grade;
 import com.institution.model.Teacher;
+import com.institution.model.grade.TimeTable;
 import com.institution.repository.GradeRepository;
 import com.institution.repository.TeacherRepository;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -64,6 +66,8 @@ public class TeacherServiceImpl implements TeacherService {
         String isClassTeacher = teacher.getClassTeacher() == null ? "false" : "true";
         teacher.setClassTeacher(Optional.ofNullable(teacher.getClassTeacher()).orElse("NOT ASSIGNED"));
         teacher.setClassTeacher(isClassTeacher);
+        teacher.setPersisted(false);
+        teacher.setTimeTable(generateTimeTable());
         if(teacher.getPicture()!=null) {
             //imageService.uploadFile(teacher.getPicture(), teacher.getName());
         }
@@ -76,7 +80,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher updateTeacher(Teacher teacher) {
+    /*public Teacher updateTeacher(Teacher teacher) {
         Optional<Teacher>  teacher1 = teacherRepository.findById(teacher.getId());
         Teacher updateTeacher = null;
         if(teacher1 == null) {
@@ -91,6 +95,25 @@ public class TeacherServiceImpl implements TeacherService {
                 e.printStackTrace();
             }
             return teacherRepository.save(updateTeacher);
+        }
+
+    }*/
+
+    public Teacher updateTeacher(Teacher teacher, Long id) {
+        Optional<Teacher>  teacherOptional = teacherRepository.findById(id);
+        if(teacherOptional.get()!=null) {
+            Teacher savedTeacher = teacherOptional.get();
+            Long userId = savedTeacher.getApplicationUserId();
+            String isClassTeacher = savedTeacher.getClassTeacher();
+            savedTeacher = teacher;
+            savedTeacher.setPersisted(true);
+            savedTeacher.setId(id);
+            savedTeacher.setApplicationUserId(userId);
+            savedTeacher.setClassTeacher(isClassTeacher);
+            return teacherRepository.save(savedTeacher);
+
+        } else {
+            throw new EntityNotFoundException(Teacher.class, "id", Long.toString(id));
         }
 
     }
@@ -169,5 +192,78 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher getTeacherDetails(long institutionId, String email) {
         return teacherRepository.findTeacherByInstitutionIdAndEmail(institutionId, email);
+    }
+
+
+    public ArrayList<Map<String, ArrayList<String>>> generateTimeTable() {
+        String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday", "Saturday"};
+        ArrayList<Map<String, ArrayList<String>>> timeTable = new ArrayList<>();
+        for(String day : days) {
+            Map<String, ArrayList<String>> dayTimeTable = new TreeMap<>();
+            ArrayList<String> grades = new ArrayList<>();
+            for(int i=0; i<10; i++) {
+                grades.add("");
+            }
+            dayTimeTable.put(day, grades);
+            timeTable.add(dayTimeTable);
+        }
+
+        return timeTable;
+    }
+
+    @Async
+    public void updateTeacherTimeTable(TimeTable timeTable, long institutionId, String grade, String section) {
+        ArrayList<Map<String, ArrayList<Map<String, String>>>> timetable = timeTable.getTimetable();
+
+        for(Map<String, ArrayList<Map<String, String>>> daytimetabe : timetable) {
+            Set<String> daykeyset = daytimetabe.keySet();
+            Iterator dataSetIterator = daykeyset.iterator();
+            String day = (String) dataSetIterator.next();
+            ArrayList<Map<String, String>> dayTimeTable = daytimetabe.get(day);
+            int index = 0;
+            for(Map<String, String> subjectTeacher :dayTimeTable) {
+                Optional<Teacher> optionalTeacher = teacherRepository.findTeacherByInstitutionIdAndName(institutionId, subjectTeacher.get("teacher"));
+                Teacher teacher = optionalTeacher.get();
+                ArrayList<Map<String, ArrayList<String>>> teacherTimeTable = teacher.getTimeTable();
+                long teacherId = teacher.getId();
+                Map<String, ArrayList<String>> teacherDayTimeTableMap = teacherTimeTable.get(getDayIndex(day));
+                ArrayList<String> teacherDayTimeTable = teacherDayTimeTableMap.get(day);
+                teacherDayTimeTable.set(index, grade + " " +section);
+                teacherDayTimeTableMap.put(day, teacherDayTimeTable);
+                teacherTimeTable.set(getDayIndex(day), teacherDayTimeTableMap);
+                teacher.setTimeTable(teacherTimeTable);
+                teacher.setPersisted(true);
+                teacher.setId(teacherId);
+                teacherRepository.save(teacher);
+                index++;
+            }
+            index = 0;
+
+        }
+
+    }
+
+    @Override
+    public void updateTeacherTimeTableOnDelete(long institutionId, String name, String day, String period) {
+        Optional<Teacher> teacherOptional = teacherRepository.findTeacherByInstitutionIdAndName(institutionId, name);
+        if(teacherOptional.get() !=null) {
+            Teacher teacher = teacherOptional.get();
+            ArrayList<Map<String, ArrayList<String>>> teacherTimeTable = teacher.getTimeTable();
+            long teacherId = teacher.getId();
+            Map<String, ArrayList<String>> teacherDayTimeTableMap = teacherTimeTable.get(getDayIndex(day));
+            ArrayList<String> teacherDayTimeTable = teacherDayTimeTableMap.get(day);
+            teacherDayTimeTable.set(Integer.parseInt(period), "");
+            teacherDayTimeTableMap.put(day, teacherDayTimeTable);
+            teacherTimeTable.set(getDayIndex(day), teacherDayTimeTableMap);
+            teacher.setTimeTable(teacherTimeTable);
+            teacher.setPersisted(true);
+            teacher.setId(teacherId);
+            teacherRepository.save(teacher);
+        }
+    }
+
+    private int getDayIndex(String day) {
+        List<String> days = new ArrayList(Arrays.asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"));
+        return days.indexOf(day);
     }
 }

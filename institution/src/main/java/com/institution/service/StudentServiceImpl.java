@@ -17,9 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -81,7 +79,7 @@ public class StudentServiceImpl implements StudentService {
         int pageSize = Integer.parseInt(Optional.ofNullable(searchParam.get("?pageSize")).orElse("10"));
         Pageable page  =  PageRequest.of(pageNumber,pageSize);
 
-        messageSender.sendMessage("dem");
+        //messageSender.sendMessage("dem");
 
         return studentsRepository.searchStudent(Optional.ofNullable(student.getName()).orElse(""),
                 Optional.ofNullable(student.getEmail()).orElse(""),
@@ -125,7 +123,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getStudentByGradeAndSection(long institutionId, String grade, String section) {
-        return studentsRepository.findByInstitutionIdAndGradeAndSection(institutionId,grade,section);
+        Comparator<Student> compareByName = (Student o1, Student o2) -> o1.getName().compareTo( o2.getName() );
+        List<Student> studentList = studentsRepository.findByInstitutionIdAndGradeAndSection(institutionId,grade,section);
+        Collections.sort(studentList, compareByName);
+        return studentList;
     }
 
     @Override
