@@ -1,6 +1,7 @@
 package com.institution.service;
 
 import com.institution.model.Teacher;
+import com.institution.model.grade.TimeTable;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
@@ -15,7 +16,7 @@ public interface TeacherService {
 
     public List<Teacher> getAllTeacher(long institutionId);
 
-    public Teacher updateTeacher(Teacher teacher);
+    public Teacher updateTeacher(Teacher teacher, Long id);
 
     public Page<Teacher> searchTeachers(Teacher teacher, long institutionId, Map<String,String> searchParam);
 
@@ -26,4 +27,8 @@ public interface TeacherService {
     public void deleteTeacher(long institutionId, long id);
 
     public Teacher getTeacherDetails(long institutionId, String email);
+
+    public void updateTeacherTimeTable(TimeTable timeTable, long institutionId, String grade, String section);
+
+    public void updateTeacherTimeTableOnDelete(long institutionId, String name, String day, String period);
 }

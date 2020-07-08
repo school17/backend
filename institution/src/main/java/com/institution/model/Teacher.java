@@ -3,15 +3,20 @@ package com.institution.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 @Document(collection = "teachers")
 @Getter @Setter @NoArgsConstructor
+@ToString
 // implements Persistable<Long>
-public class Teacher extends CustomAuditing  {
+public class Teacher extends CustomAuditing  implements Persistable<Long> {
     @Transient
     public static final String SEQUENCE_NAME = "application_teachers_sequence";
 
@@ -30,7 +35,9 @@ public class Teacher extends CustomAuditing  {
     private String picture;
     private boolean persisted;
 
-    /*@Override
+    private ArrayList<Map<String, ArrayList<String>>> timeTable;
+
+    @Override
     public Long getId() {
         return id;
     }
@@ -42,5 +49,5 @@ public class Teacher extends CustomAuditing  {
     @Override
     public boolean isNew() {
         return !persisted;
-    }*/
+    }
 }

@@ -35,4 +35,6 @@ public interface TeacherRepository extends MongoRepository<Teacher, Long> {
 
     Teacher findTeacherByInstitutionIdAndEmail(long InstitutionId, String email);
 
+    Optional<Teacher> findTeacherByInstitutionIdAndName(long InstitutionId, String name);
+
 }
