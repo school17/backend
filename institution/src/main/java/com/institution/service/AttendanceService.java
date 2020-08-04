@@ -10,4 +10,6 @@ public interface AttendanceService {
     public Attendance saveAttendance(Attendance attendance);
 
     public List<Attendance> findAttendance(long institutionId, String grade, String section, String Month, String year);
+
+    public void saveBulkAttendance(Attendance attendance);
 }

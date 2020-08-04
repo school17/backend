@@ -5,6 +5,8 @@ import com.institution.service.AttendanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,5 +34,11 @@ public class AttendanceController {
                                           @PathVariable(value = "month") String month,
                                           @PathVariable(value = "year") String year) {
         return attendanceService.findAttendance(institutionId,grade,section,month,year);
+    }
+
+    @PostMapping("/{institutionId}/attendance/bulksave")
+    public ResponseEntity<String> saveBulkAttendance(@RequestBody @Valid Attendance attendance) {
+        attendanceService.saveBulkAttendance(attendance);
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

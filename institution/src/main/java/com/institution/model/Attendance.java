@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 @Document(collection = "attendance")
 @Getter
 @Setter
@@ -21,8 +23,10 @@ public class Attendance {
     @NonNull
     private long institutionId;
 
-    @NonNull
     private String name;
+
+    @Transient
+    private Set<String> studentsList;
 
     @NonNull
     private String month;
@@ -38,4 +42,14 @@ public class Attendance {
 
     @NonNull
     private String year;
+
+    public Attendance(long institutionId, String date, String month, String year, String grade, String section, String name) {
+        this.institutionId = institutionId;
+        this.date = date;
+        this.month= month;
+        this.year =year;
+        this.grade = grade;
+        this.section = section;
+        this.name = name;
+    }
 }
