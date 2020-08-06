@@ -16,13 +16,14 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RecordOfWork implements Persistable<Long> {
+public class RecordOfWork extends CustomAuditing implements Persistable<Long> {
 
     @Transient
     public static final String SEQUENCE_NAME = "application_recordOfWork_sequence";
     private boolean persisted;
 
     private long id;
+
     @NotNull
     private long institutionId;
 
@@ -30,10 +31,10 @@ public class RecordOfWork implements Persistable<Long> {
     private  String grade;
 
     @NotNull
-    private String Subject;
+    private String subject;
 
     @NotNull
-    private String Division;
+    private String division;
 
     private Set<Map<String, ArrayList<String>>> recordOfWorks;
 

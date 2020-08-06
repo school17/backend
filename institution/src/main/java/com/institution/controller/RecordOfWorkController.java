@@ -20,14 +20,14 @@ public class RecordOfWorkController {
 
     Logger logger = LoggerFactory.getLogger(RecordOfWork.class);
 
-    @PostMapping("{institutionId}/{grade}/{division}/addrecordofwork")
+    @PostMapping("{institutionId}/{division}/{grade}/addrecordofwork")
 
     public RecordOfWork saveHomeWork(@RequestBody @Valid RecordOfWork recordOfWork) {
         return recordOfWorkService.saveRecordOfWork(recordOfWork);
     }
 
 
-    @GetMapping("{institutionId}/{grade}/{division}/recordofwork")
+    @GetMapping("{institutionId}/{division}/{grade}/{subject}/recordofwork")
 
     public RecordOfWork getRecordOfWork(
             @PathVariable(value = "institutionId") Long institutionId,
@@ -38,7 +38,7 @@ public class RecordOfWorkController {
         return recordOfWorkService.findRecordOfWorks(institutionId, grade, division, subject);
     }
 
-    @PutMapping("{institutionId}/{grade}/{division}/updaterecordofwork")
+    @PutMapping("{institutionId}/{division}/{grade}/{subject}/updaterecordofwork")
     public RecordOfWork getRecordOfWork(@RequestBody @Valid RecordOfWork recordOfWork,
                                    @PathVariable(value = "institutionId") Long institutionId,
                                    @PathVariable(value = "grade") String grade,

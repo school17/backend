@@ -11,6 +11,6 @@ import java.util.Set;
 @Repository
 public interface RecordOfWorkRepository extends MongoRepository<RecordOfWork,Long>
 {
-    RecordOfWork recordOfWorkInstitutionIdANdGradeAndDivisionAndSubject(long institutionId, String grade,String division,String subject);
+    RecordOfWork findRecordOfWorkByInstitutionIdAndGradeAndDivisionAndSubject(long institutionId, String grade,String division,String subject);
 
 }

@@ -17,16 +17,16 @@ public class RecordOfWorkServiceImpl implements RecordOfWorkService {
 
     @Override
     public RecordOfWork findRecordOfWorks(long institutionId, String grade, String division, String subject) {
-        return recordOfWorkRepository.recordOfWorkInstitutionIdANdGradeAndDivisionAndSubject(institutionId,grade,division,subject);
+        return recordOfWorkRepository.findRecordOfWorkByInstitutionIdAndGradeAndDivisionAndSubject(institutionId,grade,division,subject);
     }
 
     @Override
     public RecordOfWork saveRecordOfWork(RecordOfWork recordofwork) {
-        RecordOfWork recordOfWorkRepo=recordOfWorkRepository.recordOfWorkInstitutionIdANdGradeAndDivisionAndSubject(recordofwork.getInstitutionId(),recordofwork.getGrade(),recordofwork.getDivision(),recordofwork.getSubject());
+        RecordOfWork recordOfWorkRepo=recordOfWorkRepository.findRecordOfWorkByInstitutionIdAndGradeAndDivisionAndSubject(recordofwork.getInstitutionId(),recordofwork.getGrade(),recordofwork.getDivision(),recordofwork.getSubject());
 
         if(recordOfWorkRepo==null)
         {
-            recordofwork.setInstitutionId(sequenceGenerator.generateSequence(RecordOfWork.SEQUENCE_NAME));
+            recordofwork.setId(sequenceGenerator.generateSequence(RecordOfWork.SEQUENCE_NAME));
             recordofwork.setPersisted(false);
             return recordOfWorkRepository.save(recordofwork);
         }
@@ -42,7 +42,7 @@ public class RecordOfWorkServiceImpl implements RecordOfWorkService {
 
     @Override
     public RecordOfWork updateRecordOfWork(RecordOfWork recordofwork) {
-        RecordOfWork recordOfWorkRepo=recordOfWorkRepository.recordOfWorkInstitutionIdANdGradeAndDivisionAndSubject(recordofwork.getInstitutionId(),recordofwork.getGrade(),recordofwork.getDivision(),recordofwork.getSubject());
+        RecordOfWork recordOfWorkRepo=recordOfWorkRepository.findRecordOfWorkByInstitutionIdAndGradeAndDivisionAndSubject(recordofwork.getInstitutionId(),recordofwork.getGrade(),recordofwork.getDivision(),recordofwork.getSubject());
         if(recordOfWorkRepo !=null) {
             RecordOfWork recordOfWork1  = recordOfWorkRepo;
             recordofwork.setPersisted(true);
